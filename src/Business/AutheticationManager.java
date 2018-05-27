@@ -18,10 +18,10 @@ public class AutheticationManager {
 		
 		for(Object obj : results)
 		{
-			 user = (Usuario)obj;
+			Usuario userPar = (Usuario)obj;
 	    	
-			 if(user.getMail().equals(email) && user.getPassword().equals(password)) 
-			 	return user;			 				 
+			 if(userPar.getMail().equals(email) && userPar.getPassword().equals(password)) 
+			 	 user = userPar;			 				 
 	    }
 		
 		return user;		

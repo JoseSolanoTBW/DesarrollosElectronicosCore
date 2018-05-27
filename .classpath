@@ -2,7 +2,9 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Mauricio/Desktop/Patrones/dev/Git/DesarrollosElectronicosDataAccess/bin/DataAccess.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Mauricio/Desktop/Patrones/dev/Git/DesarrollosElectronicosObjects/bin/ObjetosDesarrollo.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mauricio/Desktop/Patrones/dev/Git/DesarrollosElectronicosObjects/bin/ObjetosDesarrolloElectronico.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mauricio/Desktop/Patrones/dev/Git/DesarrollosElectronicosDataAccess/bin/DataAccessDesarrollo.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mauricio/Desktop/Patrones/dev/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mauricio/Desktop/Patrones/dev/mongo-java-driver-3.7.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
