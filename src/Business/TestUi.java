@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import Objects.Pregunta;
+import Objects.Tarea;
 import Objects.Tramite;
 import Objects.Usuario;
 
@@ -66,7 +68,7 @@ public class TestUi {
 		}
 		else 
 		{
-			
+			ShowClientOptions();
 		}		
 	}
 	
@@ -77,17 +79,27 @@ public class TestUi {
 		out.println("Seleccione una opción");
 		out.println("1. Crear proceso");
 		out.println("2. Crear Usuario");
-		out.println("3. Salir");
+		
+		out.println("10. Salir");
 		option = Integer.parseInt(ValidateString(in.readLine()));
 		ManageAdminOptions(option);
 		
-		}while(option != 3);
+		}while(option != 10);
 	}
 	
 	public static void ShowClientOptions() throws NumberFormatException, IOException 
 	{
-		out.println("2. Crear Usuario");
-		int option = Integer.parseInt(ValidateString(in.readLine()));
+		int option = 0;
+		do {
+		out.println("Seleccione una opción");
+		out.println("1. Mostrar procesos disponible");
+		out.println("2. Mostrar procesos en curso");
+		
+		out.println("10. Salir");
+		option = Integer.parseInt(ValidateString(in.readLine()));
+		ManageUserOptions(option);
+		
+		}while(option != 10);
 	}
 	
 	public static void ManageAdminOptions(int option) throws  IOException 
@@ -99,7 +111,27 @@ public class TestUi {
 			break;
 				
 			case 2:
-			break;			
+				
+			break;
+			
+			case 3:
+			break;	
+		}				
+	}
+	
+	public static void ManageUserOptions(int option) throws  IOException 
+	{		
+		switch(option) 
+		{
+			case 1:
+				ShowAvailableProcess();
+			break;
+				
+			case 2:
+			break;
+			
+			case 3:
+			break;	
 		}				
 	}
 	
@@ -181,6 +213,43 @@ public class TestUi {
 		}
 		
 		_pManagerService.AddQuestions(tramite, pregunta, respuestas, tipo);
+	}
+	
+	public static void ShowStringList(ArrayList<String> results) 
+	{
+		for(String obj : results)
+		{
+			out.println(obj);
+		}
+	}
+	
+	public static void ShowAvailableProcess() throws NumberFormatException, IOException 
+	{
+		ShowStringList(_pManagerService.GetTramites());
+		out.println("Seleccione una opcion");
+		int tramite = Integer.parseInt(ValidateString(in.readLine()));
+		StartProcess(tramite);
 	}	
-
+	
+	public static void StartProcess(int numberProcess)  throws IOException 
+	{
+		Tramite startTramite = _pManagerService.GetTramiteByNumber(numberProcess);
+		out.println("Proceso : " + startTramite.getDescripcion());
+		for(Tarea obj : startTramite.getTareas())
+		{
+			out.println("Tarea : " + obj.getDescripcion());
+			ShowQuestion(obj.getPregunta());
+		}
+	}
+	
+	public static void ShowQuestion(ArrayList<Pregunta> questions) throws IOException 
+	{
+		
+		for(Pregunta obj : questions)
+		{
+			out.println("Condicion : " + obj.getPregunta());
+			ShowStringList(obj.getRespuestas());
+			String respuesta = in.readLine();
+		}		
+	}
 }

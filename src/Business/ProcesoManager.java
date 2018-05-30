@@ -7,6 +7,7 @@ import Objects.Grupo;
 import Objects.Pregunta;
 import Objects.Tarea;
 import Objects.Tramite;
+import Objects.Usuario;
 
 public class ProcesoManager {
 
@@ -52,6 +53,37 @@ public class ProcesoManager {
 	{
 		MongoDbTransaction transaction = new MongoDbTransaction();
 		transaction.InsertDocuement(traminte, "Tramites");
+	}
+	
+	public ArrayList<String> GetTramites()
+	{
+		MongoDbTransaction transaction = new MongoDbTransaction();
+		ArrayList<Object> results = transaction.GetData(new Tramite(), "Tramites");
+		ArrayList<String> resultString = new ArrayList<>();
+		
+		for(Object obj : results)
+		{
+			Tramite tramite = (Tramite)obj;
+			resultString.add(tramite.getNumeroTramite()+ " ."+ tramite.getDescripcion());			 
+	    }
+		
+		return resultString;
+	}
+	
+	public Tramite GetTramiteByNumber(int number)
+	{
+		MongoDbTransaction transaction = new MongoDbTransaction();
+		ArrayList<Object> results = transaction.GetData(new Tramite(), "Tramites");
+		ArrayList<String> resultString = new ArrayList<>();
+		Tramite tramiteResult = new Tramite();
+		for(Object obj : results)
+		{
+			Tramite tramite = (Tramite)obj;
+			if(tramite.getNumeroTramite() == number)
+				tramiteResult = tramite;
+	    }
+		
+		return tramiteResult;
 	}
 	
 }
